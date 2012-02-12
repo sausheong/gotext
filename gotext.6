@@ -1,480 +1,0 @@
-go object darwin amd64 release.r60.3 9516
-  exports automatically generated from
-  gotext.go in package "main"
-
-$$  // exports
-    package main
-	import runtime "runtime"
-	import bufio "bufio"
-	import time "time"
-	import rand "rand"
-	import os "os"
-	import strconv "strconv"
-	import strings "strings"
-	import fmt "fmt"
-	import http "http"
-	type "".Book struct { Title string; Content []string }
-	var "".data map[string] "".Book
-	var "".dictionary []string
-	func "".ReadBook (name string) []string
-	func "".ReadDict (name string) []string
-	type "http".ResponseWriter interface { Header() "http".Header; Write(? []uint8) (? int, ? "os".Error); WriteHeader(? int) }
-	type "os".Error interface { String() string }
-	import io "io" // indirect
-	type "io".Writer interface { Write(p []uint8) (n int, err "os".Error) }
-	type "http".Header map[string] []string
-	func (h "http".Header) Add (key string, value string)
-	func (h "http".Header) Del (key string)
-	func (h "http".Header) Get (key string) string
-	func (h "http".Header) Set (key string, value string)
-	func (h "http".Header) Write (w "io".Writer) "os".Error
-	func (h "http".Header) WriteSubset (w "io".Writer, exclude map[string] bool) "os".Error
-	type "http".Cookie struct { Name string; Value string; Path string; Domain string; Expires "time".Time; RawExpires string; MaxAge int; Secure bool; HttpOnly bool; Raw string; Unparsed []string }
-	func (c *"http".Cookie) String () string
-	type "time".Time struct { Year int64; Month int; Day int; Hour int; Minute int; Second int; Nanosecond int; Weekday int; ZoneOffset int; Zone string }
-	func (t *"time".Time) Format (layout string) string
-	func (t *"time".Time) Nanoseconds () int64
-	func (t *"time".Time) Seconds () int64
-	func (t *"time".Time) String () string
-	func (t *"time".Time) parseNanoseconds (value string, nbytes int) (rangErrString string, err "os".Error)
-	import multipart "mime/multipart" // indirect
-	type "mime/multipart".File interface { Close() "os".Error; Read(p []uint8) (n int, err "os".Error); ReadAt(p []uint8, off int64) (n int, err "os".Error); Seek(offset int64, whence int) (ret int64, err "os".Error) }
-	type "mime/multipart".FileHeader struct { Filename string; Header "net/textproto".MIMEHeader; content []uint8; tmpfile string }
-	func (fh *"mime/multipart".FileHeader) Open () (? "mime/multipart".File, ? "os".Error)
-	import textproto "net/textproto" // indirect
-	type "net/textproto".MIMEHeader map[string] []string
-	func (h "net/textproto".MIMEHeader) Add (key string, value string)
-	func (h "net/textproto".MIMEHeader) Del (key string)
-	func (h "net/textproto".MIMEHeader) Get (key string) string
-	func (h "net/textproto".MIMEHeader) Set (key string, value string)
-	type "mime/multipart".Part struct { Header "net/textproto".MIMEHeader; buffer *"bytes".Buffer; mr *"mime/multipart".Reader; disposition string; dispositionParams map[string] string }
-	func (bp *"mime/multipart".Part) Close () "os".Error
-	func (p *"mime/multipart".Part) FileName () string
-	func (p *"mime/multipart".Part) FormName () string
-	func (bp *"mime/multipart".Part) Read (p []uint8) (n int, err "os".Error)
-	func (p *"mime/multipart".Part) parseContentDisposition ()
-	func (bp *"mime/multipart".Part) populateHeaders () "os".Error
-	import bytes "bytes" // indirect
-	type "io".Reader interface { Read(p []uint8) (n int, err "os".Error) }
-	type "bytes".Buffer struct { buf []uint8; off int; runeBytes [4]uint8; bootstrap [64]uint8; lastRead "bytes".readOp }
-	func (b *"bytes".Buffer) Bytes () []uint8
-	func (b *"bytes".Buffer) Len () int
-	func (b *"bytes".Buffer) Next (n int) []uint8
-	func (b *"bytes".Buffer) Read (p []uint8) (n int, err "os".Error)
-	func (b *"bytes".Buffer) ReadByte () (c uint8, err "os".Error)
-	func (b *"bytes".Buffer) ReadBytes (delim uint8) (line []uint8, err "os".Error)
-	func (b *"bytes".Buffer) ReadFrom (r "io".Reader) (n int64, err "os".Error)
-	func (b *"bytes".Buffer) ReadRune () (r int, size int, err "os".Error)
-	func (b *"bytes".Buffer) ReadString (delim uint8) (line string, err "os".Error)
-	func (b *"bytes".Buffer) Reset ()
-	func (b *"bytes".Buffer) String () string
-	func (b *"bytes".Buffer) Truncate (n int)
-	func (b *"bytes".Buffer) UnreadByte () "os".Error
-	func (b *"bytes".Buffer) UnreadRune () "os".Error
-	func (b *"bytes".Buffer) Write (p []uint8) (n int, err "os".Error)
-	func (b *"bytes".Buffer) WriteByte (c uint8) "os".Error
-	func (b *"bytes".Buffer) WriteRune (r int) (n int, err "os".Error)
-	func (b *"bytes".Buffer) WriteString (s string) (n int, err "os".Error)
-	func (b *"bytes".Buffer) WriteTo (w "io".Writer) (n int64, err "os".Error)
-	func (b *"bytes".Buffer) grow (n int) int
-	type "bytes".readOp int
-	type "mime/multipart".Form struct { Value map[string] []string; File map[string] []*"mime/multipart".FileHeader }
-	func (f *"mime/multipart".Form) RemoveAll () "os".Error
-	type "mime/multipart".Reader struct { bufReader *"bufio".Reader; currentPart *"mime/multipart".Part; partsRead int; nl []uint8; nlDashBoundary []uint8; dashBoundaryDash []uint8; dashBoundary []uint8 }
-	func (mr *"mime/multipart".Reader) NextPart () (? *"mime/multipart".Part, ? "os".Error)
-	func (r *"mime/multipart".Reader) ReadForm (maxMemory int64) (f *"mime/multipart".Form, err "os".Error)
-	func (mr *"mime/multipart".Reader) isBoundaryDelimiterLine (line []uint8) bool
-	type "bufio".Reader struct { buf []uint8; rd "io".Reader; r int; w int; err "os".Error; lastByte int; lastRuneSize int }
-	func (b *"bufio".Reader) Buffered () int
-	func (b *"bufio".Reader) Peek (n int) (? []uint8, ? "os".Error)
-	func (b *"bufio".Reader) Read (p []uint8) (n int, err "os".Error)
-	func (b *"bufio".Reader) ReadByte () (c uint8, err "os".Error)
-	func (b *"bufio".Reader) ReadBytes (delim uint8) (line []uint8, err "os".Error)
-	func (b *"bufio".Reader) ReadLine () (line []uint8, isPrefix bool, err "os".Error)
-	func (b *"bufio".Reader) ReadRune () (rune int, size int, err "os".Error)
-	func (b *"bufio".Reader) ReadSlice (delim uint8) (line []uint8, err "os".Error)
-	func (b *"bufio".Reader) ReadString (delim uint8) (line string, err "os".Error)
-	func (b *"bufio".Reader) UnreadByte () "os".Error
-	func (b *"bufio".Reader) UnreadRune () "os".Error
-	func (b *"bufio".Reader) fill ()
-	func (b *"bufio".Reader) readErr () "os".Error
-	type "http".Request struct { Method string; RawURL string; URL *"url".URL; Proto string; ProtoMajor int; ProtoMinor int; Header "http".Header; Body "io".ReadCloser; ContentLength int64; TransferEncoding []string; Close bool; Host string; Form "url".Values; MultipartForm *"mime/multipart".Form; Trailer "http".Header; RemoteAddr string; TLS *"crypto/tls".ConnectionState }
-	func (r *"http".Request) AddCookie (c *"http".Cookie)
-	func (r *"http".Request) Cookie (name string) (? *"http".Cookie, ? "os".Error)
-	func (r *"http".Request) Cookies () []*"http".Cookie
-	func (r *"http".Request) FormFile (key string) (? "mime/multipart".File, ? *"mime/multipart".FileHeader, ? "os".Error)
-	func (r *"http".Request) FormValue (key string) string
-	func (r *"http".Request) MultipartReader () (? *"mime/multipart".Reader, ? "os".Error)
-	func (r *"http".Request) ParseForm () "os".Error
-	func (r *"http".Request) ParseMultipartForm (maxMemory int64) "os".Error
-	func (r *"http".Request) ProtoAtLeast (major int, minor int) bool
-	func (r *"http".Request) Referer () string
-	func (r *"http".Request) SetBasicAuth (username string, password string)
-	func (r *"http".Request) UserAgent () string
-	func (req *"http".Request) Write (w "io".Writer) "os".Error
-	func (req *"http".Request) WriteProxy (w "io".Writer) "os".Error
-	func (r *"http".Request) expectsContinue () bool
-	func (r *"http".Request) multipartReader () (? *"mime/multipart".Reader, ? "os".Error)
-	func (r *"http".Request) wantsHttp10KeepAlive () bool
-	func (req *"http".Request) write (w "io".Writer, usingProxy bool) "os".Error
-	import url "url" // indirect
-	type "url".Values map[string] []string
-	func (v "url".Values) Add (key string, value string)
-	func (v "url".Values) Del (key string)
-	func (v "url".Values) Encode () string
-	func (v "url".Values) Get (key string) string
-	func (v "url".Values) Set (key string, value string)
-	type "url".URL struct { Raw string; Scheme string; RawAuthority string; RawUserinfo string; Host string; RawPath string; Path string; OpaquePath bool; RawQuery string; Fragment string }
-	func (u *"url".URL) EncodedPath () string
-	func (url *"url".URL) IsAbs () bool
-	func (base *"url".URL) Parse (ref string) (? *"url".URL, ? "os".Error)
-	func (u *"url".URL) Query () "url".Values
-	func (base *"url".URL) ResolveReference (ref *"url".URL) *"url".URL
-	func (url *"url".URL) String () string
-	type "io".ReadCloser interface { Close() "os".Error; Read(p []uint8) (n int, err "os".Error) }
-	import tls "crypto/tls" // indirect
-	type "crypto/tls".ConnectionState struct { HandshakeComplete bool; CipherSuite uint16; NegotiatedProtocol string; NegotiatedProtocolIsMutual bool; PeerCertificates []*"crypto/x509".Certificate; VerifiedChains [][]*"crypto/x509".Certificate }
-	import x509 "crypto/x509" // indirect
-	import pkix "crypto/x509/pkix" // indirect
-	type "crypto/x509/pkix".CertificateList struct { TBSCertList "crypto/x509/pkix".TBSCertificateList; SignatureAlgorithm "crypto/x509/pkix".AlgorithmIdentifier; SignatureValue "asn1".BitString }
-	func (certList *"crypto/x509/pkix".CertificateList) HasExpired (currentTimeSeconds int64) bool
-	type "crypto/x509/pkix".TBSCertificateList struct { Raw "asn1".RawContent; Version int :"asn1:\"optional,default:2\""; Signature "crypto/x509/pkix".AlgorithmIdentifier; Issuer "crypto/x509/pkix".RDNSequence; ThisUpdate *"time".Time; NextUpdate *"time".Time; RevokedCertificates []"crypto/x509/pkix".RevokedCertificate :"asn1:\"optional\""; Extensions []"crypto/x509/pkix".Extension :"asn1:\"tag:0,optional,explicit\"" }
-	import asn1 "asn1" // indirect
-	type "asn1".RawContent []uint8
-	type "crypto/x509/pkix".AlgorithmIdentifier struct { Algorithm "asn1".ObjectIdentifier; Parameters "asn1".RawValue :"asn1:\"optional\"" }
-	type "asn1".ObjectIdentifier []int
-	func (oi "asn1".ObjectIdentifier) Equal (other "asn1".ObjectIdentifier) bool
-	type "asn1".RawValue struct { Class int; Tag int; IsCompound bool; Bytes []uint8; FullBytes []uint8 }
-	type "crypto/x509/pkix".RDNSequence []"crypto/x509/pkix".RelativeDistinguishedNameSET
-	type "crypto/x509/pkix".RelativeDistinguishedNameSET []"crypto/x509/pkix".AttributeTypeAndValue
-	type "crypto/x509/pkix".AttributeTypeAndValue struct { Type "asn1".ObjectIdentifier; Value interface { } }
-	type "crypto/x509/pkix".RevokedCertificate struct { SerialNumber *"big".Int; RevocationTime *"time".Time; Extensions []"crypto/x509/pkix".Extension :"asn1:\"optional\"" }
-	import big "big" // indirect
-	type "fmt".State interface { Flag(c int) bool; Precision() (prec int, ok bool); Width() (wid int, ok bool); Write(b []uint8) (ret int, err "os".Error) }
-	type "rand".Rand struct { src "rand".Source }
-	func (r *"rand".Rand) ExpFloat64 () float64
-	func (r *"rand".Rand) Float32 () float32
-	func (r *"rand".Rand) Float64 () float64
-	func (r *"rand".Rand) Int () int
-	func (r *"rand".Rand) Int31 () int32
-	func (r *"rand".Rand) Int31n (n int32) int32
-	func (r *"rand".Rand) Int63 () int64
-	func (r *"rand".Rand) Int63n (n int64) int64
-	func (r *"rand".Rand) Intn (n int) int
-	func (r *"rand".Rand) NormFloat64 () float64
-	func (r *"rand".Rand) Perm (n int) []int
-	func (r *"rand".Rand) Seed (seed int64)
-	func (r *"rand".Rand) Uint32 () uint32
-	type "rand".Source interface { Int63() int64; Seed(seed int64) }
-	type "fmt".ScanState interface { Read(buf []uint8) (n int, err "os".Error); ReadRune() (rune int, size int, err "os".Error); SkipSpace(); Token(skipSpace bool, f func(? int) bool) (token []uint8, err "os".Error); UnreadRune() "os".Error; Width() (wid int, ok bool) }
-	type "io".RuneScanner interface { ReadRune() (rune int, size int, err "os".Error); UnreadRune() "os".Error }
-	type "big".Int struct { neg bool; abs "big".nat }
-	func (z *"big".Int) Abs (x *"big".Int) *"big".Int
-	func (z *"big".Int) Add (x *"big".Int, y *"big".Int) *"big".Int
-	func (z *"big".Int) And (x *"big".Int, y *"big".Int) *"big".Int
-	func (z *"big".Int) AndNot (x *"big".Int, y *"big".Int) *"big".Int
-	func (z *"big".Int) Binomial (n int64, k int64) *"big".Int
-	func (z *"big".Int) Bit (i int) uint
-	func (z *"big".Int) BitLen () int
-	func (z *"big".Int) Bytes () []uint8
-	func (x *"big".Int) Cmp (y *"big".Int) int
-	func (z *"big".Int) Div (x *"big".Int, y *"big".Int) *"big".Int
-	func (z *"big".Int) DivMod (x *"big".Int, y *"big".Int, m *"big".Int) (? *"big".Int, ? *"big".Int)
-	func (z *"big".Int) Exp (x *"big".Int, y *"big".Int, m *"big".Int) *"big".Int
-	func (x *"big".Int) Format (s "fmt".State, ch int)
-	func (z *"big".Int) GobDecode (buf []uint8) "os".Error
-	func (z *"big".Int) GobEncode () (? []uint8, ? "os".Error)
-	func (x *"big".Int) Int64 () int64
-	func (z *"big".Int) Lsh (x *"big".Int, n uint) *"big".Int
-	func (z *"big".Int) Mod (x *"big".Int, y *"big".Int) *"big".Int
-	func (z *"big".Int) ModInverse (g *"big".Int, p *"big".Int) *"big".Int
-	func (z *"big".Int) Mul (x *"big".Int, y *"big".Int) *"big".Int
-	func (z *"big".Int) MulRange (a int64, b int64) *"big".Int
-	func (z *"big".Int) Neg (x *"big".Int) *"big".Int
-	func (z *"big".Int) Not (x *"big".Int) *"big".Int
-	func (z *"big".Int) Or (x *"big".Int, y *"big".Int) *"big".Int
-	func (z *"big".Int) Quo (x *"big".Int, y *"big".Int) *"big".Int
-	func (z *"big".Int) QuoRem (x *"big".Int, y *"big".Int, r *"big".Int) (? *"big".Int, ? *"big".Int)
-	func (z *"big".Int) Rand (rnd *"rand".Rand, n *"big".Int) *"big".Int
-	func (z *"big".Int) Rem (x *"big".Int, y *"big".Int) *"big".Int
-	func (z *"big".Int) Rsh (x *"big".Int, n uint) *"big".Int
-	func (z *"big".Int) Scan (s "fmt".ScanState, ch int) "os".Error
-	func (z *"big".Int) Set (x *"big".Int) *"big".Int
-	func (z *"big".Int) SetBit (x *"big".Int, i int, b uint) *"big".Int
-	func (z *"big".Int) SetBytes (buf []uint8) *"big".Int
-	func (z *"big".Int) SetInt64 (x int64) *"big".Int
-	func (z *"big".Int) SetString (s string, base int) (? *"big".Int, ? bool)
-	func (x *"big".Int) Sign () int
-	func (x *"big".Int) String () string
-	func (z *"big".Int) Sub (x *"big".Int, y *"big".Int) *"big".Int
-	func (z *"big".Int) Xor (x *"big".Int, y *"big".Int) *"big".Int
-	func (z *"big".Int) scan (r "io".RuneScanner, base int) (? *"big".Int, ? int, ? "os".Error)
-	type "big".Word uintptr
-	type "big".nat []"big".Word
-	func (z "big".nat) add (x "big".nat, y "big".nat) "big".nat
-	func (z "big".nat) and (x "big".nat, y "big".nat) "big".nat
-	func (z "big".nat) andNot (x "big".nat, y "big".nat) "big".nat
-	func (z "big".nat) bit (i uint) uint
-	func (x "big".nat) bitLen () int
-	func (z "big".nat) bytes (buf []uint8) int
-	func (z "big".nat) clear ()
-	func (x "big".nat) cmp (y "big".nat) int
-	func (x "big".nat) decimalString () string
-	func (z "big".nat) div (z2 "big".nat, u "big".nat, v "big".nat) (q "big".nat, r "big".nat)
-	func (z "big".nat) divLarge (u "big".nat, uIn "big".nat, v "big".nat) (q "big".nat, r "big".nat)
-	func (z "big".nat) divW (x "big".nat, y "big".Word) (q "big".nat, r "big".Word)
-	func (z "big".nat) expNN (x "big".nat, y "big".nat, m "big".nat) "big".nat
-	func (z "big".nat) make (n int) "big".nat
-	func (x "big".nat) modW (d "big".Word) "big".Word
-	func (z "big".nat) mul (x "big".nat, y "big".nat) "big".nat
-	func (z "big".nat) mulAddWW (x "big".nat, y "big".Word, r "big".Word) "big".nat
-	func (z "big".nat) mulRange (a uint64, b uint64) "big".nat
-	func (z "big".nat) norm () "big".nat
-	func (z "big".nat) or (x "big".nat, y "big".nat) "big".nat
-	func (x "big".nat) powersOfTwoDecompose () (q "big".nat, k int)
-	func (n "big".nat) probablyPrime (reps int) bool
-	func (z "big".nat) random (rand *"rand".Rand, limit "big".nat, n int) "big".nat
-	func (z "big".nat) scan (r "io".RuneScanner, base int) (? "big".nat, ? int, ? "os".Error)
-	func (z "big".nat) set (x "big".nat) "big".nat
-	func (z "big".nat) setBit (x "big".nat, i uint, b uint) "big".nat
-	func (z "big".nat) setBytes (buf []uint8) "big".nat
-	func (z "big".nat) setUint64 (x uint64) "big".nat
-	func (z "big".nat) setWord (x "big".Word) "big".nat
-	func (z "big".nat) shl (x "big".nat, s uint) "big".nat
-	func (z "big".nat) shr (x "big".nat, s uint) "big".nat
-	func (x "big".nat) string (charset string) string
-	func (z "big".nat) sub (x "big".nat, y "big".nat) "big".nat
-	func (z "big".nat) xor (x "big".nat, y "big".nat) "big".nat
-	type "crypto/x509/pkix".Extension struct { Id "asn1".ObjectIdentifier; Critical bool :"asn1:\"optional\""; Value []uint8 }
-	type "asn1".BitString struct { Bytes []uint8; BitLength int }
-	func (b "asn1".BitString) At (i int) int
-	func (b "asn1".BitString) RightAlign () []uint8
-	type "crypto/x509".SignatureAlgorithm int
-	import rsa "crypto/rsa" // indirect
-	type "crypto/rsa".PrivateKey struct { ? "crypto/rsa".PublicKey; D *"big".Int; Primes []*"big".Int; Precomputed "crypto/rsa".PrecomputedValues }
-	func (priv *"crypto/rsa".PrivateKey) Precompute ()
-	func (priv *"crypto/rsa".PrivateKey) Validate () "os".Error
-	type "crypto/rsa".PublicKey struct { N *"big".Int; E int }
-	type "crypto/rsa".PrecomputedValues struct { Dp *"big".Int; Dq *"big".Int; Qinv *"big".Int; CRTValues []"crypto/rsa".CRTValue }
-	type "crypto/rsa".CRTValue struct { Exp *"big".Int; Coeff *"big".Int; R *"big".Int }
-	type "crypto/x509".VerifyOptions struct { DNSName string; Intermediates *"crypto/x509".CertPool; Roots *"crypto/x509".CertPool; CurrentTime int64 }
-	type "crypto/x509".CertPool struct { bySubjectKeyId map[string] []int; byName map[string] []int; certs []*"crypto/x509".Certificate }
-	func (s *"crypto/x509".CertPool) AddCert (cert *"crypto/x509".Certificate)
-	func (s *"crypto/x509".CertPool) AppendCertsFromPEM (pemCerts []uint8) bool
-	func (s *"crypto/x509".CertPool) findVerifiedParents (cert *"crypto/x509".Certificate) []int
-	type "crypto/x509".Certificate struct { Raw []uint8; RawTBSCertificate []uint8; RawSubjectPublicKeyInfo []uint8; Signature []uint8; SignatureAlgorithm "crypto/x509".SignatureAlgorithm; PublicKeyAlgorithm "crypto/x509".PublicKeyAlgorithm; PublicKey interface { }; Version int; SerialNumber *"big".Int; Issuer "crypto/x509/pkix".Name; Subject "crypto/x509/pkix".Name; NotBefore *"time".Time; NotAfter *"time".Time; KeyUsage "crypto/x509".KeyUsage; ExtKeyUsage []"crypto/x509".ExtKeyUsage; UnknownExtKeyUsage []"asn1".ObjectIdentifier; BasicConstraintsValid bool; IsCA bool; MaxPathLen int; SubjectKeyId []uint8; AuthorityKeyId []uint8; DNSNames []string; EmailAddresses []string; PermittedDNSDomainsCritical bool; PermittedDNSDomains []string; PolicyIdentifiers []"asn1".ObjectIdentifier }
-	func (c *"crypto/x509".Certificate) CheckCRLSignature (crl *"crypto/x509/pkix".CertificateList) "os".Error
-	func (c *"crypto/x509".Certificate) CheckSignature (algo "crypto/x509".SignatureAlgorithm, signed []uint8, signature []uint8) "os".Error
-	func (c *"crypto/x509".Certificate) CheckSignatureFrom (parent *"crypto/x509".Certificate) "os".Error
-	func (c *"crypto/x509".Certificate) CreateCRL (rand "io".Reader, priv *"crypto/rsa".PrivateKey, revokedCerts []"crypto/x509/pkix".RevokedCertificate, now *"time".Time, expiry *"time".Time) (crlBytes []uint8, err "os".Error)
-	func (c *"crypto/x509".Certificate) Equal (other *"crypto/x509".Certificate) bool
-	func (c *"crypto/x509".Certificate) Verify (opts "crypto/x509".VerifyOptions) (chains [][]*"crypto/x509".Certificate, err "os".Error)
-	func (c *"crypto/x509".Certificate) VerifyHostname (h string) "os".Error
-	func (c *"crypto/x509".Certificate) buildChains (cache map[int] [][]*"crypto/x509".Certificate, currentChain []*"crypto/x509".Certificate, opts *"crypto/x509".VerifyOptions) (chains [][]*"crypto/x509".Certificate, err "os".Error)
-	func (c *"crypto/x509".Certificate) isValid (certType int, opts *"crypto/x509".VerifyOptions) "os".Error
-	type "crypto/x509".PublicKeyAlgorithm int
-	type "crypto/x509/pkix".Name struct { Country []string; Organization []string; OrganizationalUnit []string; Locality []string; Province []string; StreetAddress []string; PostalCode []string; SerialNumber string; CommonName string }
-	func (n *"crypto/x509/pkix".Name) FillFromRDNSequence (rdns *"crypto/x509/pkix".RDNSequence)
-	func (n "crypto/x509/pkix".Name) ToRDNSequence () "crypto/x509/pkix".RDNSequence
-	type "crypto/x509".KeyUsage int
-	type "crypto/x509".ExtKeyUsage int
-	func "".WordsHandler (w "http".ResponseWriter, r *"http".Request)
-	func "".BookHandler (w "http".ResponseWriter, r *"http".Request)
-	func "".randInt (length int) int
-	func "".NoHandler (w "http".ResponseWriter, r *"http".Request)
-	func "".main ()
-	var "".initdone¬∑ uint8
-	func "".init ()
-
-$$  // local types
-
-$$
-
-!
-Ñ y</ Ñ y<Users Ñ y<sausheong Ñ y<projects Ñ y<gotext Ñ y<gotext.go 8      Ñ y<fmt.a 8     ˇˇˇˇuÑ y<rand.a 8     ˇˇˇˇuÑ y<time.a 8     ˇˇˇˇuÑ y<os.a 8     ˇˇˇˇuÑ y<bufio.a 8     ˇˇˇˇuÑ y<http.a 8 	    ˇˇˇˇuÑ y<strings.a 8 
-    ˇˇˇˇuÑ y<strconv.a 8     ˇˇˇˇu8 m     Ñ q"".ReadBook Ñ qtype.func(string) []string „    ëqE®       uÑ q"".statictmp_0000 Ñ qgo.string."" -    oqq    x-    o   qur       uèÑ qruntime.new Ñ qtype.func(int32) *[1]string      ëq≠      è≠   ™   q±     ±     Ñ s"".slice Ñ qtype.[]string r       uï®ˇˇˇsr       uï¨ˇˇˇs≠   ï†ˇˇˇsÑ è	os.name ™   	èÑ t
-"".name Ñ qtype.string ≠   ë
-t≠   ér    ï   
-tr       éÑ qos.Open Ñ qtype.func(string) (*os.File, os.Error)      ëqÑ èos.file ≠      èÑ s"".file Ñ qtype.*os.File ≠   ïêˇˇˇsÑ èos.err ™      è≠   éÑ s"".file_err Ñ qtype.os.Error ≠   ï¿ˇˇˇs≠      é≠   ï»ˇˇˇsY        pY     <   p™   ï¿ˇˇˇs¢   éuQ        pr       uèÑ qtype.func(int32) *[1]interface { }      ëq≠      èÑ s"".autotmp_0002 r       uÿˇˇˇsr       u‹ˇˇˇs≠   –ˇˇˇsÑ qtype.uint8 Ñ èruntime.typ ≠   ìq xèÑ èruntime.elem ™      è≠   ë
-t≠   ér    ï   
-tr       éÑ qruntime.convT2E Ñ qtype.func(*uint8, string) interface { }      ëq™      è™   –ˇˇˇs≠   í±     ±     Ñ qgo.string."Error in reading %s" ™   qÑ èfmt.format ™   è±     ±     Ñ èfmt.a ™      è≠   –ˇˇˇs≠   ér    ÿˇˇˇsr       ér    ‹ˇˇˇsr       éÑ qfmt.Printf Ñ qtype.func(string, ...interface { }) (int, os.Error)      ëqY     <   p≠   ìq xèÑ q type.io.Reader Ñ è!runtime.typ2 ≠   ìq  x   !è≠   ïêˇˇˇs≠      èÑ q"runtime.convT2I Ñ q#type.func(*uint8, *uint8, *os.File) io.Reader      ë"q#™      èÑ è$bufio.rd ™   $è±     ±     Ñ q%bufio.NewReader Ñ q&type.func(io.Reader) *bufio.Reader      ë%q&≠      èÑ s'"".file_buffer Ñ q(type.*bufio.Reader ≠   ïòˇˇˇ's(Y     J   pY     ñ   p≠   ïòˇˇˇ's(Ñ è)bufio.b ≠   )èÑ è*bufio.delim q    .   u   *èÑ q+bufio.(*Reader).ReadString      +qÑ è,bufio.line ™      ,è≠   éÑ s-"".line ≠   ï∞ˇˇˇ-sr       ér    ï∏ˇˇˇ-sÑ è.bufio.err ™       .è≠   éÑ s/"".err ≠   ï‡ˇˇˇ/s≠      é≠   ïËˇˇˇ/s≠   ï†ˇˇˇsÑ s0"".autotmp_0004 ≠   ˇˇˇ0sr    ï®ˇˇˇsr    ¯ˇˇˇ0sr    ï¨ˇˇˇsr    ¸ˇˇˇ0sY     `   pY     v   pr    ¸ˇˇˇ0sr    ¯ˇˇˇ0s›    &       uR     _   p≠   ìq xèÑ è1runtime.old ™      1è≠   ˇˇˇ0s≠   ér    ¯ˇˇˇ0sr       ér    ¸ˇˇˇ0sr       éÑ èruntime.n ≠      u   èÑ qruntime.growslice Ñ qtype.func(*uint8, []string, int64) []string      ëq≠       è≠   ˇˇˇ0sr    (   èr    ¯ˇˇˇ0sr    ,   èr    ¸ˇˇˇ0sY     v   pr    ¯ˇˇˇ0sr    D     Æ   r    ¯ˇˇˇ0sr    ¸ˇˇˇ0sr    ¸ˇˇˇ0s≠   ˇˇˇ0s≠   ˇˇˇ0s™   ˇˇˇ0sÆ   ≠   é®      uö   ≠   ï∞ˇˇˇ-s≠   ér    ï∏ˇˇˇ-sr       é≠   ˇˇˇ0s≠   ï†ˇˇˇsr    ¯ˇˇˇ0sr    ï®ˇˇˇsr    ¸ˇˇˇ0sr    ï¨ˇˇˇsY     ê   pY     ï   p™   ï‡ˇˇˇ/s¢   éuQ     è   pY     I   pY     ï   pY     J   pÑ t""..noname ≠       tr        tr        t™       Ñ qruntime.throwreturn  !    q™ !     Ñ q"".ReadDict Ñ qtype.func(string) []string „ #   ëqE®       uÑ q"".statictmp_0007 Ñ q	go.string."" - $   oqq    	x- $   o   qur $      uèÑ q
-runtime.new Ñ qtype.func(int32) *[1]string  $    ë
-q≠$      è≠$   ™$   q±$     ±$     Ñ s"".slice Ñ qtype.[]string r $      uï®ˇˇˇsr $      uï¨ˇˇˇs≠$   ï†ˇˇˇsÑ èos.name ™%   èÑ t"".name Ñ qtype.string ≠%   ët≠%   ér %   ï   tr %      éÑ qos.Open Ñ qtype.func(string) (*os.File, os.Error)  %    ëqÑ èos.file ≠%      èÑ s"".file Ñ qtype.*os.File ≠%   ïêˇˇˇsÑ èos.err ™%      è≠%   éÑ s"".file_err Ñ qtype.os.Error ≠%   ï¿ˇˇˇs≠%      é≠%   ï»ˇˇˇsY &    ∂   pY &    ÿ   p™&   ï¿ˇˇˇs¢&   éuQ &    µ   pr &      uèÑ qtype.func(int32) *[1]interface { }  &    ë
-q≠&      èÑ s"".autotmp_0009 r &      uÿˇˇˇsr &      u‹ˇˇˇs≠&   –ˇˇˇsÑ qtype.uint8 Ñ èruntime.typ ≠&   ìq xèÑ èruntime.elem ™&      è≠&   ët≠&   ér &   ï   tr &      éÑ qruntime.convT2E Ñ qtype.func(*uint8, string) interface { }  &    ëq™&      è™&   –ˇˇˇs≠&   í±&     ±&     Ñ q go.string."Error in reading %s" ™&    qÑ è!fmt.format ™&   !è±&     ±&     Ñ è"fmt.a ™&      "è≠&   –ˇˇˇs≠&   ér &   ÿˇˇˇsr &      ér &   ‹ˇˇˇsr &      éÑ q#fmt.Printf Ñ q$type.func(string, ...interface { }) (int, os.Error)  &    ë#q$Y &    ÿ   p≠'   ìq xèÑ q%type.io.Reader Ñ è&runtime.typ2 ≠'   ìq %x   &è≠'   ïêˇˇˇs≠'      èÑ q'runtime.convT2I Ñ q(type.func(*uint8, *uint8, *os.File) io.Reader  '    ë'q(™'      èÑ è)bufio.rd ™'   )è±'     ±'     Ñ q*bufio.NewReader Ñ q+type.func(io.Reader) *bufio.Reader  '    ë*q+≠'      èÑ s,"".file_buffer Ñ q-type.*bufio.Reader ≠'   ïòˇˇˇ,s-Y (    Ê   pY (    2  p≠)   ïòˇˇˇ,s-Ñ è.bufio.b ≠)   .èÑ è/bufio.delim q )   
-   u   /èÑ q0bufio.(*Reader).ReadString  )    0qÑ è1bufio.line ™)      1è≠)   éÑ s"".line ≠)   ï∞ˇˇˇsr )      ér )   ï∏ˇˇˇsÑ èbufio.err ™)       è≠)   éÑ s"".err ≠)   ï‡ˇˇˇs≠)      é≠)   ïËˇˇˇs≠*   ï†ˇˇˇsÑ s"".autotmp_0011 ≠*   ˇˇˇsr *   ï®ˇˇˇsr *   ¯ˇˇˇsr *   ï¨ˇˇˇsr *   ¸ˇˇˇsY *    ¸   pY *      pr *   ¸ˇˇˇsr *   ¯ˇˇˇs› *   & *      uR *    ˚   p≠*   ìq xèÑ èruntime.old ™*      è≠*   ˇˇˇs≠*   ér *   ¯ˇˇˇsr *      ér *   ¸ˇˇˇsr *      éÑ èruntime.n ≠*      u   èÑ qruntime.growslice Ñ qtype.func(*uint8, []string, int64) []string  *    ëq≠*       è≠*   ˇˇˇsr *   (   èr *   ¯ˇˇˇsr *   ,   èr *   ¸ˇˇˇsY *      pr *   ¯ˇˇˇsr *   D *    Æ*   r *   ¯ˇˇˇsr *   ¸ˇˇˇsr *   ¸ˇˇˇs≠*   ˇˇˇs≠*   ˇˇˇs™*   ˇˇˇsÆ*   ≠*   é®*      uö*   ≠*   ï∞ˇˇˇs≠*   ér *   ï∏ˇˇˇsr *      é≠*   ˇˇˇs≠*   ï†ˇˇˇsr *   ¯ˇˇˇsr *   ï®ˇˇˇsr *   ¸ˇˇˇsr *   ï¨ˇˇˇsY +    ,  pY +    1  p™+   ï‡ˇˇˇs¢+   éuQ +    +  pY +    Â   pY +    1  pY (    Ê   pÑ t	""..noname ≠-      	tr -      	tr -      	t™ -     Ñ q
-runtime.throwreturn  .    
-q™ .     Ñ q"".WordsHandler Ñ qtype.func(http.ResponseWriter, *http.Request) „ 0   ëqE†      uÑ t"".r Ñ qtype.*http.Request ≠1   ï   t≠1       éö1   `   u™1   è±1     ±1     r 1      u   èÑ qruntime.slicestring1 Ñ qtype.func(string, int) string  1    ëq™1      èÑ èstrings.s ™1   è±1     ±1     Ñ qgo.string."/" ™1   qÑ èstrings.sep ™1      è±1     ±1     Ñ qstrings.Split Ñ qtype.func(string, string) []string  1    ëq≠1       èÑ s"".splits Ñ qtype.[]string ≠1   ï¿ˇˇˇsr 1   (   èr 1   ï»ˇˇˇsr 1   ,   èr 1   ïÃˇˇˇs™2   ï¿ˇˇˇs& 2      é   uT 2    T  pÑ qruntime.panicindex  2    q≠2   éö2      u≠2   ér 2      éÑ s"".n Ñ qtype.int r 3      uïòˇˇˇsY 4    [  pY 4    q  p& 4   uQ 4    Z  pÑ qtype.os.Error ≠5   uï†ˇˇˇs≠5   uï®ˇˇˇsÑ èstrconv.s ™6   è≠6   ér 6      éÑ qstrconv.Atoi Ñ qtype.func(string) (int, os.Error)  6    ëqÑ èstrconv.i r 6      èr 6   ïòˇˇˇsÑ è strconv.err ™6       è≠6   é≠6   ï†ˇˇˇs≠6      é≠6   ï®ˇˇˇsY 7    l  pY 7    p  p™7   ï†ˇˇˇs¢7   éuQ 7    k  pY 7    p  pY 4    q  pÑ q!type.uint8 Ñ è"runtime.typ ≠9   ìq x!"èÑ è#runtime.nel ≠9      u   #èÑ è$runtime.cap ≠9      u   $èÑ q%runtime.makeslice Ñ q&type.func(*uint8, int64, int64) []string  9    ë%q&≠9      èÑ s'"".sentence ≠9   ï‡ˇˇˇ'sr 9       èr 9   ïËˇˇˇ'sr 9   $   èr 9   ïÏˇˇˇ'sÑ s("".i r :   uïúˇˇˇ(sY :      pY :    Œ  pD :    ïúˇˇˇ(sr :   ïúˇˇˇ(sr :   ïòˇˇˇs& :   R :    }  pÑ q)"".dictionary r ;   ï   )qÑ è*"".length r ;   *èÑ q+"".randInt Ñ q,type.func(int) int  ;    ë+q,r ;      è™;   ë)qÆ;   & ;      ëO ;    å  p ;    q≠;   ë> ;      uö;   ™;   è±;     ±;     Ñ q-strings.TrimSpace Ñ q.type.func(string) string  ;    ë-q.≠;      èÑ s/"".autotmp_0014 ≠;   ∞ˇˇˇ/sr ;      èr ;   ∏ˇˇˇ/s≠;   ï‡ˇˇˇ'sÑ s0"".autotmp_0015 ≠;   –ˇˇˇ0sr ;   ïËˇˇˇ'sr ;   ÿˇˇˇ0sr ;   ïÏˇˇˇ'sr ;   ‹ˇˇˇ0sY ;    ü  pY ;    µ  pr ;   ‹ˇˇˇ0sr ;   ÿˇˇˇ0s› ;   & ;      uR ;    û  p≠;   ìq x!"è™;      è≠;   –ˇˇˇ0s≠;   ér ;   ÿˇˇˇ0sr ;      ér ;   ‹ˇˇˇ0sr ;      é≠;      u   è ;    ëq≠;       è≠;   –ˇˇˇ0sr ;   (   èr ;   ÿˇˇˇ0sr ;   ,   èr ;   ‹ˇˇˇ0sY ;    µ  pr ;   ÿˇˇˇ0sr ;   D ;    Æ;   r ;   ÿˇˇˇ0sr ;   ‹ˇˇˇ0sr ;   ‹ˇˇˇ0s≠;   –ˇˇˇ0s≠;   –ˇˇˇ0s™;   –ˇˇˇ0sÆ;   ≠;   é®;      uö;   ≠;   ∞ˇˇˇ/s≠;   ér ;   ∏ˇˇˇ/sr ;      é≠;   –ˇˇˇ0s≠;   ï‡ˇˇˇ'sr ;   ÿˇˇˇ0sr ;   ïËˇˇˇ'sr ;   ‹ˇˇˇ0sr ;   ïÏˇˇˇ'sY :    ~  pr =      uèÑ q1runtime.new Ñ qtype.func(int32) *[1]interface { }  =    ë1q≠=      èÑ s"".autotmp_0018 r =      u¯ˇˇˇsr =      u¸ˇˇˇs≠=   ˇˇˇsÑ èstrings.a ™=   è≠=   ï‡ˇˇˇ's≠=   ér =   ïËˇˇˇ'sr =      ér =   ïÏˇˇˇ'sr =      éÑ qgo.string." " ™=   q™=      è±=     ±=     Ñ qstrings.Join Ñ qtype.func([]string, string) string  =    ëq™=       èÑ èruntime.elem ™=      è±=     ±=     Ñ qtype.string ≠=   ìq x!"èÑ q	runtime.convT2E Ñ q
-type.func(*uint8, string) interface { }  =    ë	q
-™=      è™=   ˇˇˇs≠=   í±=     ±=     Ñ qtype.io.Writer ≠=   ìq x!"è™=      èÑ t"".w Ñ qtype.http.ResponseWriter ≠=   ët≠=   é≠=   ï   t≠=      éÑ qruntime.convI2I Ñ qtype.func(*uint8, http.ResponseWriter) io.Writer  =    ëq™=      èÑ èfmt.w ™=   è±=     ±=     Ñ èfmt.a ™=      è≠=   ˇˇˇs≠=   ér =   ¯ˇˇˇsr =      ér =   ¸ˇˇˇsr =      éÑ qfmt.Fprintln Ñ qtype.func(io.Writer, ...interface { }) (int, os.Error)  =    ëq™ >     Ñ q"".BookHandler Ñ qtype.func(http.ResponseWriter, *http.Request) „ @   ëqEÿ      uÑ t"".r Ñ qtype.*http.Request ≠A   ï   t≠A       éöA   `   u™A   è±A     ±A     r A      u   èÑ qruntime.slicestring1 Ñ qtype.func(string, int) string  A    ëq™A      èÑ èstrings.s ™A   è±A     ±A     Ñ qgo.string."/" ™A   qÑ èstrings.sep ™A      è±A     ±A     Ñ qstrings.Split Ñ qtype.func(string, string) []string  A    ëq≠A       èÑ s"".splits Ñ q type.[]string ≠A   ïpˇˇˇs r A   (   èr A   ïxˇˇˇs r A   ,   èr A   ï|ˇˇˇs ™B   ïpˇˇˇs & B      é   uT B      pÑ q!runtime.panicindex  B    !q≠B   éöB      u≠B   éÑ s""".bookName ≠B   ï∞ˇˇˇ"sr B      ér B   ï∏ˇˇˇ"sÑ s#"".n Ñ q$type.int r C      uïhˇˇˇ#s$Y D    $  pY D    H  pr D   ïxˇˇˇs & D      uU D    #  p™E   ïpˇˇˇs & E      é   uT E    +  p E    !q≠E   éöE       u≠E   ér E      éY F    1  pY F    G  p& F   uQ F    0  pÑ s%"".err Ñ q&type.os.Error ≠G   uïêˇˇˇ%s&≠G   uïòˇˇˇ%s&Ñ è'strconv.s ™H   'è≠H   ér H      éÑ q(strconv.Atoi Ñ q)type.func(string) (int, os.Error)  H    ë(q)Ñ è*strconv.i r H      *èr H   ïhˇˇˇ#s$Ñ è+strconv.err ™H      +è≠H   é≠H   ïêˇˇˇ%s&≠H      é≠H   ïòˇˇˇ%s&Y I    B  pY I    F  p™I   ïêˇˇˇ%s&¢I   éuQ I    A  pY I    F  pY F    G  pY D    H  pÑ q,type.map[string] "".Book Ñ q-type.uint8 Ñ è.runtime.mapType ≠L   ìq ,x-.èÑ q/"".data ≠L   ë/q,Ñ è0runtime.hmap ≠L      0èÑ è1runtime.key ™L      1è≠L   ï∞ˇˇˇ"s≠L   ér L   ï∏ˇˇˇ"sr L      éÑ qruntime.mapaccess1 Ñ qtype.func(*uint8, map[string] "".Book, string) "".Book  L    ëq™L       èÑ s"".book Ñ qtype."".Book ™L   ï–ˇˇˇs≠L      u® L     ±L     Y M    X  pY M    Î  p™M   ï–ˇˇˇsr M      é& M   uQ M    W  p™N   ï–ˇˇˇsöN      ur N      éÑ è"".length r N   èÑ q"".randInt Ñ qtype.func(int) int  N    ëqr N   ïhˇˇˇ#s$r N      èr O   Å$	 O   ™P   ï–ˇˇˇsöP      u≠P   ér P      ér P      éÆP   ÆP   ØP   ¢P   V P    p  pÑ qruntime.panicslice  P    q¢P   T P    o  p› P   Ñ s	"".slice r P   ïàˇˇˇ	s r P   › P   r P   ïåˇˇˇ	s ®P      uöP   ≠P   ïÄˇˇˇ	s Ñ è
-runtime.typ ≠Q   ìq  x-
-èÆQ   Ñ èruntime.nel ≠Q      èÆQ   Ñ èruntime.cap ≠Q      èÑ qruntime.makeslice Ñ qtype.func(*uint8, int64, int64) []string  Q    ëq≠Q      èÑ s"".para ≠Q   ï¿ˇˇˇs r Q       èr Q   ï»ˇˇˇs r Q   $   èr Q   ïÃˇˇˇs r R   uÅ$Y R    ä  pY R    µ  pD R    Å$r R   ïhˇˇˇ#s$& R   R R    à  p™S   ïÄˇˇˇ	s Ñ s"".i r S   ïlˇˇˇs$ÆS   & S      ëO S    ì  p S    !q≠S   ë> S      uöS   ™S   è±S     ±S     Ñ qgo.string."\x0d\n" ™S   q™S      è±S     ±S      S    ëq™S       èÑ èstrings.a ™S   è±S     ±S     Ñ qgo.string." " ™S   q™S      è±S     ±S     Ñ qstrings.Join Ñ qtype.func([]string, string) string  S    ëqr S   ïlˇˇˇs$≠S       èr S   (   è™T   ï¿ˇˇˇs ÆT   & T      éO T    Ø  p T    !q≠T   é> T      uöT   ≠T   ér T      éY R    â  p™V   è≠V   ï¿ˇˇˇs ≠V   ér V   ï»ˇˇˇs r V      ér V   ïÃˇˇˇs r V      éÑ qgo.string."" ™V   q™V      è±V     ±V      V    ëq≠V       èÑ s"".paragraph Ñ qtype.string ≠V   ï†ˇˇˇsr V   (   èr V   ï®ˇˇˇsr W      uèÑ qruntime.new Ñ qtype.func(int32) *[1]interface { }  W    ëq≠W      èÑ s"".autotmp_0020 r W      u¯ˇˇˇsr W      u¸ˇˇˇs≠W   ˇˇˇs≠W   ìq x-
-èÑ èruntime.elem ™W      è≠W   ï†ˇˇˇs≠W   ér W   ï®ˇˇˇsr W      éÑ qruntime.convT2E Ñ qtype.func(*uint8, string) interface { }  W    ëq™W      è™W   ˇˇˇs≠W   í±W     ±W     Ñ qtype.io.Writer ≠W   ìq x-
-è™W      èÑ t "".w Ñ q!type.http.ResponseWriter ≠W   ë t!≠W   é≠W   ï    t!≠W      éÑ q"runtime.convI2I Ñ q#type.func(*uint8, http.ResponseWriter) io.Writer  W    ë"q#™W      èÑ è$fmt.w ™W   $è±W     ±W     Ñ è%fmt.a ™W      %è≠W   ˇˇˇs≠W   ér W   ¯ˇˇˇsr W      ér W   ¸ˇˇˇsr W      éÑ q&fmt.Fprintln Ñ q'type.func(io.Writer, ...interface { }) (int, os.Error)  W    ë&q'Y M    Î  p™ Y     „ [   ëqE      uÑ q(time.Nanoseconds Ñ q)type.func() int64  \    ë(q)≠\   èÑ è*rand.seed ≠\   *èÑ q+rand.Seed Ñ q,type.func(int64)  \    ë+q,Ñ t-"".length Ñ q.type.int r ]   ë-t.D ]    Ñ è/rand.n r ]   /èÑ q0rand.Intn  ]    ë0qr ]      èD ]    Ñ t1""..noname r ]      1t™ ]     Ñ qruntime.throwreturn  ^    q™ ^     Ñ q"".NoHandler Ñ qtype.func(http.ResponseWriter, *http.Request) „ `   ëqE       u™ `     Ñ q"".main Ñ qtype.func() „ b   ëq†   uÑ q"".statictmp_0024 Ñ qgo.string."Barsoom" - c   oqq    x- c   o   q   u™c   qÑ s"".autotmp_0023 ™c   †ˇˇˇs≠c      u® c     ±c     Ñ q	go.string."barsoom1.txt" ™c   	qÑ è
-"".name ™c   
-è±c     ±c     Ñ q"".ReadBook Ñ qtype.func(string) []string  c    ëq™c      è™c   †ˇˇˇsöc      u±c     ±c     Ñ qtype.map[string] "".Book Ñ qtype.uint8 Ñ èruntime.mapType ≠c   ìq xèÑ q"".data ≠c   ëqÑ èruntime.hmap ≠c      èÑ qgo.string."barsoom" ™c   qÑ èruntime.key ™c      è±c     ±c     ™c   †ˇˇˇsÑ èruntime.val ™c       è≠c      u® c     ±c     Ñ qruntime.mapassign1 Ñ qtype.func(*uint8, map[string] "".Book, string, "".Book)  c    ëqÑ q"".statictmp_0026 Ñ qgo.string."Robinson Crusoe" - d   oqq    x- d   o   q   u™d   qÑ s"".autotmp_0025 ™d   ¿ˇˇˇs≠d      u® d     ±d     Ñ qgo.string."crusoe.txt" ™d   q™d   
-è±d     ±d      d    ëq™d      è™d   ¿ˇˇˇsöd      u±d     ±d     ≠d   ìq xè≠d   ëq≠d      èÑ qgo.string."crusoe" ™d   q™d      è±d     ±d     ™d   ¿ˇˇˇs™d       è≠d      u® d     ±d      d    ëqÑ q"".statictmp_0028 Ñ qgo.string."Sherlock Holmes" - e   oqq    x- e   o   q   u™e   qÑ s"".autotmp_0027 ™e   ‡ˇˇˇs≠e      u® e     ±e     Ñ qgo.string."holmes1.txt" ™e   q™e   
-è±e     ±e      e    ëq™e      è™e   ‡ˇˇˇsöe      u±e     ±e     ≠e   ìq xè≠e   ëq≠e      èÑ q go.string."holmes" ™e    q™e      è±e     ±e     ™e   ‡ˇˇˇs™e       è≠e      u® e     ±e      e    ëqÑ q!go.string."dictionary.txt" ™f   !q™f   
-è±f     ±f     Ñ q""".ReadDict  f    ë"q≠f      èÑ q#"".dictionary Ñ q$type.[]string ≠f   ë#q$r f      èr f   ï   #q$r f      èr f   ï   #q$Ñ q%go.string."/words/" ™h   %qÑ è&http.pattern ™h   &è±h     ±h     Ñ q'"".WordsHandler ≠h   ìq 'xÑ è(http.handler ≠h      (èÑ q)http.HandleFunc Ñ q*type.func(string, func(http.ResponseWriter, *http.Request))  h    ë)q*Ñ q+go.string."/book/" ™i   +q™i   &è±i     ±i     Ñ q,"".BookHandler ≠i   ìq ,x≠i      (è i    ë)q*Ñ q-go.string."/" ™j   -q™j   &è±j     ±j     ≠j   ìq x≠j      (è j    ë)q*Ñ q.go.string.":5678" ™k   .qÑ è/http.addr ™k   /è±k     ±k     ™k      (è≠k   u≈k     ≈k     Ñ q0http.ListenAndServe Ñ q1type.func(string, http.Handler) os.Error  k    ë0q1™ l     Ñ q"".init „ l   ëq(   uÑ q"".initdone¬∑ q l   ëqY l    Ä  pY l    å  pq l   Å% l   uQ l      pY l    Ö  pY l    ä  pq l   Å% l      uZ l    Ñ  p™ l     Y l    ä  pÑ qruntime.throwinit  l    ëqY l    å  pq l      uëqÑ qstrconv.init  l    ëqÑ qstrings.init Ñ qtype.func()  l    ëqÑ qhttp.init  l    ëqÑ qbufio.init  l    ëqÑ q	os.init  l    ë	qÑ q
-time.init  l    ë
-qÑ qrand.init  l    ëqÑ qfmt.init  l    ëq≠   ìq xèÑ èruntime.hint ≠   u   èÑ qruntime.makemap Ñ qtype.func(*uint8, int64) map[string] "".Book      ëq≠      èÑ qtype.map[string] "".Book Ñ q"".data ≠   ëqÑ qtype.uint8 Ñ èruntime.typ ≠   ìq $xèÑ èruntime.nel ≠      u   èÑ èruntime.cap ≠      u   èÑ qruntime.makeslice Ñ qtype.func(*uint8, int64, int64) []string      ëq≠      è≠   ë#q$r        èr    ï   #q$r    $   èr    ï   #q$q l      uëq™ l     ™ l     6    ëq   u6    ë#q$   uÑ q"".statictmp_0000 6    oq   uÑ q"".statictmp_0007 6 $   oq   uÑ q"".statictmp_0024 6 c   oq    uÑ q"".statictmp_0026 6 d   oq    u6 e   oq    u6 l   ëq   uÑ qtype.*runtime.SliceType - l   o$qq x- l   o   $qq    $x- l   o   $q   u- l   o   $q”®Û
-u- l   o   $q   u- l   o   $q   u- l   o   $q   u- l   o   $q   uÑ qgo.string."[]string" - l   o    $qq xÑ qweak.type.*[]string - l   o0   $qq xÑ qtype.string - l   o8   $qq x6 l   o
-$q@   uÑ q type.func(string) []string Ñ q!type.*runtime.FuncType - l   o qq !x- l   o    qq     x- l   o    q   u- l   o    qE ªH¢    u- l   o    q	   u- l   o    q   u- l   o    q   u- l   o    q   uÑ q"go.string."func(string) []string" - l   o     qq "xÑ q#weak.type.*func(string) []string - l   o0    qq #x- l   o8    qu- l   o@    qq `    x- l   oH    q   u- l   oL    q   u- l   oP    qq h    x- l   oX    q   u- l   o\    q   u- l   o`    qq x- l   oh    qq $x6 l   o
- qp   uÑ q$type.[1]string Ñ q%type.*runtime.ArrayType - l   o$qq %x- l   o   $qq    $x- l   o   $q   u- l   o   $qƒ∏b u- l   o   $q   u- l   o   $q   u- l   o   $q   u- l   o   $q   uÑ q&go.string."[1]string" - l   o    $qq &xÑ q'weak.type.*[1]string - l   o0   $qq 'x- l   o8   $qq xÑ q(type.[]string - l   o@   $qq (x- l   oH   $q   u6 l   o
-$qP   uÑ q)type.*[1]string Ñ q*type.*runtime.PtrType - l   o)qq *x- l   o   )qq    )x- l   o   )q   u- l   o   )qEl.!‰    u- l   o   )q	   u- l   o   )q   u- l   o   )q   u- l   o   )q   uÑ q+go.string."*[1]string" - l   o    )qq +xÑ q,weak.type.**[1]string - l   o0   )qq ,x- l   o8   )qq $x6 l   o
-)q@   uÑ q-type.func(int32) *[1]string - l   o-qq !x- l   o   -qq    -x- l   o   -q   u- l   o   -qE8°Yì    u- l   o   -q	   u- l   o   -q   u- l   o   -q   u- l   o   -q   uÑ q.go.string."func(int32) *[1]string" - l   o    -qq .xÑ q/weak.type.*func(int32) *[1]string - l   o0   -qq /x- l   o8   -qu- l   o@   -qq `   -x- l   oH   -q   u- l   oL   -q   u- l   oP   -qq h   -x- l   oX   -q   u- l   o\   -q   uÑ q0type.int32 - l   o`   -qq 0x- l   oh   -qq )x6 l   o
--qp   uÑ q1type.func(string) (*os.File, os.Error) - l   o1qq !x- l   o   1qq    1x- l   o   1q   u- l   o   1qEù’Êâ    u- l   o   1q	   u- l   o   1q   u- l   o   1q   u- l   o   1q   uÑ qgo.string."func(string) (*os.File, os.Error)" - l   o    1qq xÑ qweak.type.*func(string) (*os.File, os.Error) - l   o0   1qq x- l   o8   1qu- l   o@   1qq `   1x- l   oH   1q   u- l   oL   1q   u- l   oP   1qq h   1x- l   oX   1q   u- l   o\   1q   u- l   o`   1qq xÑ qtype.*os.File - l   oh   1qq xÑ qtype.os.Error - l   op   1qq x6 l   o
-1qx   uÑ qtype.interface { } Ñ qtype.*runtime.InterfaceType - l   oqq x- l   o   qq    x- l   o   q   u- l   o   qEÙ§BÛ    u- l   o   q   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."interface { }" - l   o    qq xÑ qweak.type.*interface { } - l   o0   qq x- l   o8   qq H   x- l   o@   qu- l   oD   qu6 l   o
-qH   uÑ q	type.[]interface { } - l   o	qq x- l   o   	qq    	x- l   o   	q   u- l   o   	q6˚˝lu- l   o   	q   u- l   o   	q   u- l   o   	q   u- l   o   	q   uÑ q
-go.string."[]interface { }" - l   o    	qq 
-xÑ qweak.type.*[]interface { } - l   o0   	qq x- l   o8   	qq x6 l   o
-	q@   uÑ qtype.[1]interface { } - l   oqq %x- l   o   qq    x- l   o   q   u- l   o   qE›cœÁ    u- l   o   q   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."[1]interface { }" - l   o    qq xÑ qweak.type.*[1]interface { } - l   o0   qq x- l   o8   qq x- l   o@   qq 	x- l   oH   q   u6 l   o
-qP   uÑ qtype.*[1]interface { } - l   oqq *x- l   o   qq    x- l   o   q   u- l   o   qVD¿_u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."*[1]interface { }" - l   o    qq xÑ qweak.type.**[1]interface { } - l   o0   qq x- l   o8   qq x6 l   o
-q@   uÑ qtype.func(int32) *[1]interface { } - l   oqq !x- l   o   qq    x- l   o   q   u- l   o   q:üu- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(int32) *[1]interface { }" - l   o    qq xÑ qweak.type.*func(int32) *[1]interface { } - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq h   x- l   oX   q   u- l   o\   q   u- l   o`   qq 0x- l   oh   qq x6 l   o
-qp   uÑ qtype.func(*uint8, string) interface { } - l   oqq !x- l   o   qq    x- l   o   q   u- l   o   qEÔ§)§    u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(*uint8, string) interface { }" - l   o    qq xÑ qweak.type.*func(*uint8, string) interface { } - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq p   x- l   oX   q   u- l   o\   q   uÑ qtype.*uint8 - l   o`   qq x- l   oh   qq x- l   op   qq x6 l   o
-qx   uÑ qtype.func(string, ...interface { }) (int, os.Error) - l   oqq !x- l   o   qq    x- l   o   q   u- l   o   q¸∏ƒ~u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(string, ...interface { }) (int, os.Error)" - l   o    qq xÑ qweak.type.*func(string, ...interface { }) (int, os.Error) - l   o0   qq x- l   o8   q   u- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq p   x- l   oX   q   u- l   o\   q   u- l   o`   qq x- l   oh   qq 	xÑ qtype.int - l   op   qq x- l   ox   qq x6 l   o
-qÄ   uÑ qtype.func(*uint8, *uint8, *os.File) io.Reader - l   oqq !x- l   o   qq    x- l   o   q   u- l   o   qE-⁄!”    u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(*uint8, *uint8, *os.File) io.Reader" - l   o    qq xÑ qweak.type.*func(*uint8, *uint8, *os.File) io.Reader - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq x   x- l   oX   q   u- l   o\   q   u- l   o`   qq x- l   oh   qq x- l   op   qq xÑ q type.io.Reader - l   ox   qq  x6 l   o
-qÄ   uÑ q!type.func(io.Reader) *bufio.Reader Ñ q"type.*runtime.FuncType - l   o!qq "x- l   o   !qq    !x- l   o   !q   u- l   o   !qEûÒ!≈    u- l   o   !q	   u- l   o   !q   u- l   o   !q   u- l   o   !q   uÑ q#go.string."func(io.Reader) *bufio.Reader" - l   o    !qq #xÑ q$weak.type.*func(io.Reader) *bufio.Reader - l   o0   !qq $x- l   o8   !qu- l   o@   !qq `   !x- l   oH   !q   u- l   oL   !q   u- l   oP   !qq h   !x- l   oX   !q   u- l   o\   !q   u- l   o`   !qq  xÑ q%type.*bufio.Reader - l   oh   !qq %x6 l   o
-!qp   uÑ q&type.func(*uint8, []string, int64) []string - l   o&qq "x- l   o   &qq    &x- l   o   &q   u- l   o   &qED#“«    u- l   o   &q	   u- l   o   &q   u- l   o   &q   u- l   o   &q   uÑ q'go.string."func(*uint8, []string, int64) []string" - l   o    &qq 'xÑ q(weak.type.*func(*uint8, []string, int64) []string - l   o0   &qq (x- l   o8   &qu- l   o@   &qq `   &x- l   oH   &q   u- l   oL   &q   u- l   oP   &qq x   &x- l   oX   &q   u- l   o\   &q   u- l   o`   &qq xÑ q)type.[]string - l   oh   &qq )xÑ q*type.int64 - l   op   &qq *x- l   ox   &qq )x6 l   o
-&qÄ   uÑ q+type.func(http.ResponseWriter, *http.Request) - l   o+qq "x- l   o   +qq    +x- l   o   +q   u- l   o   +qëÙõu- l   o   +q	   u- l   o   +q   u- l   o   +q   u- l   o   +q   uÑ q,go.string."func(http.ResponseWriter, *http.Request)" - l   o    +qq ,xÑ q-weak.type.*func(http.ResponseWriter, *http.Request) - l   o0   +qq -x- l   o8   +qu- l   o@   +qq `   +x- l   oH   +q   u- l   oL   +q   u- l   oP   +qq p   +x- l   oX   +qu- l   o\   +quÑ q.type.http.ResponseWriter - l   o`   +qq .xÑ q/type.*http.Request - l   oh   +qq /x6 l   o
-+qp   uÑ q0type.func(string, int) string - l   o0qq "x- l   o   0qq    0x- l   o   0q   u- l   o   0qE∞’ë¿    u- l   o   0q	   u- l   o   0q   u- l   o   0q   u- l   o   0q   uÑ q1go.string."func(string, int) string" - l   o    0qq 1xÑ qweak.type.*func(string, int) string - l   o0   0qq x- l   o8   0qu- l   o@   0qq `   0x- l   oH   0q   u- l   oL   0q   u- l   oP   0qq p   0x- l   oX   0q   u- l   o\   0q   uÑ qtype.string - l   o`   0qq x- l   oh   0qq x- l   op   0qq x6 l   o
-0qx   uÑ qtype.func(string, string) []string - l   oqq "x- l   o   qq    x- l   o   q   u- l   o   qE.…ó˚    u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(string, string) []string" - l   o    qq xÑ qweak.type.*func(string, string) []string - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq p   x- l   oX   q   u- l   o\   q   u- l   o`   qq x- l   oh   qq x- l   op   qq )x6 l   o
-qx   uÑ qtype.func(string) (int, os.Error) - l   oqq "x- l   o   qq    x- l   o   q   u- l   o   qE<≠Œ§    u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(string) (int, os.Error)" - l   o    qq xÑ qweak.type.*func(string) (int, os.Error) - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq h   x- l   oX   q   u- l   o\   q   u- l   o`   qq x- l   oh   qq xÑ q	type.os.Error - l   op   qq 	x6 l   o
-qx   uÑ q
-type.func(*uint8, int64, int64) []string - l   o
-qq "x- l   o   
-qq    
-x- l   o   
-q   u- l   o   
-qE\=ﬁ    u- l   o   
-q	   u- l   o   
-q   u- l   o   
-q   u- l   o   
-q   uÑ qgo.string."func(*uint8, int64, int64) []string" - l   o    
-qq xÑ qweak.type.*func(*uint8, int64, int64) []string - l   o0   
-qq x- l   o8   
-qu- l   o@   
-qq `   
-x- l   oH   
-q   u- l   oL   
-q   u- l   oP   
-qq x   
-x- l   oX   
-q   u- l   o\   
-q   u- l   o`   
-qq x- l   oh   
-qq *x- l   op   
-qq *x- l   ox   
-qq )x6 l   o
-
-qÄ   uÑ qtype.func(int) int - l   oqq "x- l   o   qq    x- l   o   q   u- l   o   qEò<2á    u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(int) int" - l   o    qq xÑ qweak.type.*func(int) int - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq h   x- l   oX   q   u- l   o\   q   u- l   o`   qq x- l   oh   qq x6 l   o
-qp   uÑ qtype.func(string) string - l   oqq "x- l   o   qq    x- l   o   q   u- l   o   qEM¸®Á    u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(string) string" - l   o    qq xÑ qweak.type.*func(string) string - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq h   x- l   oX   q   u- l   o\   q   u- l   o`   qq x- l   oh   qq x6 l   o
-qp   uÑ qtype.func([]string, string) string - l   oqq "x- l   o   qq    x- l   o   q   u- l   o   qNEY*u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func([]string, string) string" - l   o    qq xÑ qweak.type.*func([]string, string) string - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq p   x- l   oX   q   u- l   o\   q   u- l   o`   qq )x- l   oh   qq x- l   op   qq x6 l   o
-qx   uÑ qtype.func(*uint8, http.ResponseWriter) io.Writer - l   oqq "x- l   o   qq    x- l   o   q   u- l   o   qEK¡ æ    u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(*uint8, http.ResponseWriter) io.Writer" - l   o    qq xÑ qweak.type.*func(*uint8, http.ResponseWriter) io.Writer - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq p   x- l   oX   q   u- l   o\   q   uÑ qtype.*uint8 - l   o`   qq x- l   oh   qq .xÑ qtype.io.Writer - l   op   qq x6 l   o
-qx   uÑ qtype.func(io.Writer, ...interface { }) (int, os.Error) - l   oqq "x- l   o   qq    x- l   o   q   u- l   o   qEoÕõı    u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(io.Writer, ...interface { }) (int, os.Error)" - l   o    qq xÑ qweak.type.*func(io.Writer, ...interface { }) (int, os.Error) - l   o0   qq x- l   o8   q   u- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq p   x- l   oX   q   u- l   o\   q   u- l   o`   qq xÑ qtype.[]interface { } - l   oh   qq xÑ qtype.int - l   op   qq x- l   ox   qq 	x6 l   o
-qÄ   uÑ q type.*"".Book Ñ q!type.*runtime.PtrType - l   o qq !x- l   o    qq     x- l   o    q   u- l   o    qEMi(¢    u- l   o    q	   u- l   o    q   u- l   o    q   u- l   o    q   uÑ q"go.string."*main.Book" - l   o     qq "xÑ q#weak.type.**"".Book - l   o0    qq #xÑ q$type."".Book - l   o8    qq $x6 l   o q@   uÑ q%type.*runtime.StructType - l   o$qq %x- l   o   $qq    $x- l   o   $q    u- l   o   $qE≈?£±    u- l   o   $q   u- l   o   $q   u- l   o   $q   u- l   o   $q   uÑ q&go.string."main.Book" - l   o    $qq &x- l   o0   $qq  x- l   o8   $qq H   $x- l   o@   $q   u- l   oD   $q   uÑ q'go.string."Title" - l   oH   $qq 'x- l   oP   $qu- l   oX   $qq x- l   o`   $qu- l   oh   $quÑ q(go.string."Content" - l   op   $qq (x- l   ox   $qu- l   oÄ   $qq )x- l   oà   $qu- l   oê   $q   u- l   o(   $qq ò   $xÑ q)go.string."Book" - l   oò   $qq )xÑ q*go.importpath."". - l   o†   $qq *x- l   o®   $qq ∏   $x- l   o∞   $qu- l   o¥   $qu6 l   o$q∏   uÑ q+type.map[string] "".Book Ñ q,type.*runtime.MapType - l   o+qq ,x- l   o   +qq    +x- l   o   +q   u- l   o   +qEöÿÉ˛    u- l   o   +q	   u- l   o   +q   u- l   o   +q   u- l   o   +q   uÑ q-go.string."map[string] main.Book" - l   o    +qq -xÑ q.weak.type.*map[string] "".Book - l   o0   +qq .x- l   o8   +qq x- l   o@   +qq $x6 l   o
-+qH   uÑ q/type.func(*uint8, map[string] "".Book, string) "".Book Ñ q0type.*runtime.FuncType - l   o/qq 0x- l   o   /qq    /x- l   o   /q   u- l   o   /qEÍ9ü•    u- l   o   /q	   u- l   o   /q   u- l   o   /q   u- l   o   /q   uÑ q1go.string."func(*uint8, map[string] main.Book, string) main.Book" - l   o    /qq 1xÑ qweak.type.*func(*uint8, map[string] "".Book, string) "".Book - l   o0   /qq x- l   o8   /qu- l   o@   /qq `   /x- l   oH   /q   u- l   oL   /q   u- l   oP   /qq x   /x- l   oX   /q   u- l   o\   /q   u- l   o`   /qq x- l   oh   /qq +x- l   op   /qq x- l   ox   /qq $x6 l   o
-/qÄ   uÑ qtype.func() int64 - l   oqq 0x- l   o   qq    x- l   o   q   u- l   o   qEa|ëê    u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func() int64" - l   o    qq xÑ qweak.type.*func() int64 - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   qu- l   oL   qu- l   oP   qq `   x- l   oX   q   u- l   o\   q   uÑ qtype.int64 - l   o`   qq x6 l   o
-qh   uÑ qtype.func(int64) - l   oqq 0x- l   o   qq    x- l   o   q   u- l   o   q!Êx&u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(int64)" - l   o    qq xÑ qweak.type.*func(int64) - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq h   x- l   oX   qu- l   o\   qu- l   o`   qq x6 l   o
-qh   uÑ q	type.func() - l   o	qq 0x- l   o   	qq    	x- l   o   	q   u- l   o   	qEˆºÇˆ    u- l   o   	q	   u- l   o   	q   u- l   o   	q   u- l   o   	q   uÑ q
-go.string."func()" - l   o    	qq 
-xÑ qweak.type.*func() - l   o0   	qq x- l   o8   	qu- l   o@   	qq `   	x- l   oH   	qu- l   oL   	qu- l   oP   	qq `   	x- l   oX   	qu- l   o\   	qu6 l   o
-	q`   uÑ qtype.func(*uint8, map[string] "".Book, string, "".Book) - l   oqq 0x- l   o   qq    x- l   o   q   u- l   o   qÃö'3u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(*uint8, map[string] main.Book, string, main.Book)" - l   o    qq xÑ qweak.type.*func(*uint8, map[string] "".Book, string, "".Book) - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq Ä   x- l   oX   qu- l   o\   qu- l   o`   qq x- l   oh   qq +xÑ qtype.string - l   op   qq x- l   ox   qq $x6 l   o
-qÄ   uÑ qtype.func(string, func(http.ResponseWriter, *http.Request)) - l   oqq 0x- l   o   qq    x- l   o   q   u- l   o   qE˙„èñ    u- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(string, func(http.ResponseWriter, *http.Request))" - l   o    qq xÑ qweak.type.*func(string, func(http.ResponseWriter, *http.Request)) - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq p   x- l   oX   qu- l   o\   qu- l   o`   qq xÑ qtype.func(http.ResponseWriter, *http.Request) - l   oh   qq x6 l   o
-qp   uÑ qtype.func(string, http.Handler) os.Error - l   oqq 0x- l   o   qq    x- l   o   q   u- l   o   qs’õSu- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(string, http.Handler) os.Error" - l   o    qq xÑ qweak.type.*func(string, http.Handler) os.Error - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq p   x- l   oX   q   u- l   o\   q   u- l   o`   qq xÑ qtype.http.Handler - l   oh   qq xÑ qtype.os.Error - l   op   qq x6 l   o
-qx   uÑ qtype.func(*uint8, int64) map[string] "".Book - l   oqq 0x- l   o   qq    x- l   o   q   u- l   o   q˚,ﬂYu- l   o   q	   u- l   o   q   u- l   o   q   u- l   o   q   uÑ qgo.string."func(*uint8, int64) map[string] main.Book" - l   o    qq xÑ qweak.type.*func(*uint8, int64) map[string] "".Book - l   o0   qq x- l   o8   qu- l   o@   qq `   x- l   oH   q   u- l   oL   q   u- l   oP   qq p   x- l   oX   q   u- l   o\   q   uÑ qtype.*uint8 - l   o`   qq x- l   oh   qq x- l   op   qq +x6 l   o
-qx   uÑ qgo.importpath.runtime. Ñ qgo.string."runtime" - l   oqq    x- l   o   q   u6 l   o
-q   uÑ qgo.importpath.bufio. Ñ q go.string."bufio" - l   oqq     x- l   o   q   u6 l   o
-q   uÑ q!go.importpath.time. Ñ q"go.string."time" - l   o!qq    "x- l   o   !q   u6 l   o
-!q   uÑ q#go.importpath.rand. Ñ q$go.string."rand" - l   o#qq    $x- l   o   #q   u6 l   o
-#q   uÑ q%go.importpath.os. Ñ q&go.string."os" - l   o%qq    &x- l   o   %q   u6 l   o
-%q   uÑ q'go.importpath.strconv. Ñ q(go.string."strconv" - l   o'qq    (x- l   o   'q   u6 l   o
-'q   uÑ q)go.importpath.strings. Ñ q*go.string."strings" - l   o)qq    *x- l   o   )q   u6 l   o
-)q   uÑ q+go.importpath.fmt. Ñ q,go.string."fmt" - l   o+qq    ,x- l   o   +q   u6 l   o
-+q   uÑ q-go.importpath.http. Ñ q.go.string."http" - l   o-qq    .x- l   o   -q   u6 l   o
--q   uÑ q/go.string."" -    o/qq    /x-    o   /qu-    o   /qu6    o
-/q   uÑ q0go.string."Error in reading %s" -    o0qq    0x-    o   0q   u-    o   0q Error in-    o   0q  reading-    o   0q  %s     -    o   0qu6    o
-0q    uÑ q1go.string."/" - 1   o1qq    1x- 1   o   1q   u- 1   o   1q /       - 1   o   1qu6 1   o
-1q   uÑ qgo.string." " - =   oqq    x- =   o   q   u- =   o   q         - =   o   qu6 =   o
-q   uÑ qgo.string."\x0d\n" - S   oqq    x- S   o   q   u- S   o   q 
-      - S   o   qu6 S   o
-q   uÑ qgo.string."Barsoom" - c   oqq    x- c   o   q   u- c   o   q Barsoom - c   o   qu6 c   o
-q   uÑ qgo.string."barsoom1.txt" - c   oqq    x- c   o   q   u- c   o   q barsoom1- c   o   q .txt    - c   o   qu6 c   o
-q    uÑ qgo.string."barsoom" - c   oqq    x- c   o   q   u- c   o   q barsoom - c   o   qu6 c   o
-q   uÑ qgo.string."Robinson Crusoe" - d   oqq    x- d   o   q   u- d   o   q Robinson- d   o   q  Crusoe - d   o   qu6 d   o
-q    uÑ qgo.string."crusoe.txt" - d   oqq    x- d   o   q
-   u- d   o   q crusoe.t- d   o   q xt      - d   o   qu6 d   o
-q   uÑ qgo.string."crusoe" - d   oqq    x- d   o   q   u- d   o   q crusoe  - d   o   qu6 d   o
-q   uÑ q	go.string."Sherlock Holmes" - e   o	qq    	x- e   o   	q   u- e   o   	q Sherlock- e   o   	q  Holmes - e   o   	qu6 e   o
-	q    uÑ q
-go.string."holmes1.txt" - e   o
-qq    
-x- e   o   
-q   u- e   o   
-q holmes1.- e   o   
-q txt     - e   o   
-qu6 e   o
-
-q   uÑ qgo.string."holmes" - e   oqq    x- e   o   q   u- e   o   q holmes  - e   o   qu6 e   o
-q   uÑ qgo.string."dictionary.txt" - f   oqq    x- f   o   q   u- f   o   q dictiona- f   o   q ry.txt  - f   o   qu6 f   o
-q    uÑ qgo.string."/words/" - h   oqq    x- h   o   q   u- h   o   q /words/ - h   o   qu6 h   o
-q   uÑ qgo.string."/book/" - i   oqq    x- i   o   q   u- i   o   q /book/  - i   o   qu6 i   o
-q   uÑ qgo.string.":5678" - k   oqq    x- k   o   q   u- k   o   q :5678   - k   o   qu6 k   o
-q   uÑ qgo.string."[]string" - l   oqq    x- l   o   q   u- l   o   q []string- l   o   qu6 l   o
-q   uÑ qgo.string."func(string) []string" - l   oqq    x- l   o   q   u- l   o   q func(str- l   o   q ing) []s- l   o   q tring   - l   o!   qu6 l   o
-q(   uÑ qgo.string."[1]string" - l   oqq    x- l   o   q	   u- l   o   q [1]strin- l   o   q g       - l   o   qu6 l   o
-q   uÑ qgo.string."*[1]string" - l   oqq    x- l   o   q
-   u- l   o   q *[1]stri- l   o   q ng      - l   o   qu6 l   o
-q   uÑ qgo.string."func(int32) *[1]string" - l   oqq    x- l   o   q   u- l   o   q func(int- l   o   q 32) *[1]- l   o   q string  - l   o"   qu6 l   o
-q(   uÑ qgo.string."func(string) (*os.File, os.Error)" - l   oqq    x- l   o   q!   u- l   o   q func(str- l   o   q ing) (*o- l   o   q s.File, - l   o$   q os.Error- l   o,   q )       - l   o-   qu6 l   o
-q0   uÑ qgo.string."interface { }" - l   oqq    x- l   o   q   u- l   o   q interfac- l   o   q e { }   - l   o   qu6 l   o
-q    uÑ qgo.string."[]interface { }" - l   oqq    x- l   o   q   u- l   o   q []interf- l   o   q ace { } - l   o   qu6 l   o
-q    uÑ qgo.string."[1]interface { }" - l   oqq    x- l   o   q   u- l   o   q [1]inter- l   o   q face { }- l   o   qu6 l   o
-q    uÑ qgo.string."*[1]interface { }" - l   oqq    x- l   o   q   u- l   o   q *[1]inte- l   o   q rface { - l   o   q }       - l   o   qu6 l   o
-q    uÑ qgo.string."func(int32) *[1]interface { }" - l   oqq    x- l   o   q   u- l   o   q func(int- l   o   q 32) *[1]- l   o   q interfac- l   o$   q e { }   - l   o)   qu6 l   o
-q0   uÑ qgo.string."func(*uint8, string) interface { }" - l   oqq    x- l   o   q"   u- l   o   q func(*ui- l   o   q nt8, str- l   o   q ing) int- l   o$   q erface {- l   o,   q  }      - l   o.   qu6 l   o
-q0   uÑ qgo.string."func(string, ...interface { }) (int, os.Error)" - l   oqq    x- l   o   q.   u- l   o   q func(str- l   o   q ing, ...- l   o   q interfac- l   o$   q e { }) (- l   o,   q int, os.- l   o4   q Error)  - l   o:   qu6 l   o
-q@   uÑ qgo.string."func(*uint8, *uint8, *os.File) io.Reader" - l   oqq    x- l   o   q(   u- l   o   q func(*ui- l   o   q nt8, *ui- l   o   q nt8, *os- l   o$   q .File) i- l   o,   q o.Reader- l   o4   qu6 l   o
-q8   uÑ qgo.string."func(io.Reader) *bufio.Reader" - l   oqq    x- l   o   q   u- l   o   q func(io.- l   o   q Reader) - l   o   q *bufio.R- l   o$   q eader   - l   o)   qu6 l   o
-q0   uÑ qgo.string."func(*uint8, []string, int64) []string" - l   oqq    x- l   o   q&   u- l   o   q func(*ui- l   o   q nt8, []s- l   o   q tring, i- l   o$   q nt64) []- l   o,   q string  - l   o2   qu6 l   o
-q8   uÑ q go.string."func(http.ResponseWriter, *http.Request)" - l   o qq     x- l   o    q(   u- l   o    q func(htt- l   o    q p.Respon- l   o    q seWriter- l   o$    q , *http.- l   o,    q Request)- l   o4    qu6 l   o
- q8   uÑ q!go.string."func(string, int) string" - l   o!qq    !x- l   o   !q   u- l   o   !q func(str- l   o   !q ing, int- l   o   !q ) string- l   o$   !qu6 l   o
-!q(   uÑ q"go.string."func(string, string) []string" - l   o"qq    "x- l   o   "q   u- l   o   "q func(str- l   o   "q ing, str- l   o   "q ing) []s- l   o$   "q tring   - l   o)   "qu6 l   o
-"q0   uÑ q#go.string."func(string) (int, os.Error)" - l   o#qq    #x- l   o   #q   u- l   o   #q func(str- l   o   #q ing) (in- l   o   #q t, os.Er- l   o$   #q ror)    - l   o(   #qu6 l   o
-#q0   uÑ q$go.string."func(*uint8, int64, int64) []string" - l   o$qq    $x- l   o   $q#   u- l   o   $q func(*ui- l   o   $q nt8, int- l   o   $q 64, int6- l   o$   $q 4) []str- l   o,   $q ing     - l   o/   $qu6 l   o
-$q0   uÑ q%go.string."func(int) int" - l   o%qq    %x- l   o   %q   u- l   o   %q func(int- l   o   %q ) int   - l   o   %qu6 l   o
-%q    uÑ q&go.string."func(string) string" - l   o&qq    &x- l   o   &q   u- l   o   &q func(str- l   o   &q ing) str- l   o   &q ing     - l   o   &qu6 l   o
-&q    uÑ q'go.string."func([]string, string) string" - l   o'qq    'x- l   o   'q   u- l   o   'q func([]s- l   o   'q tring, s- l   o   'q tring) s- l   o$   'q tring   - l   o)   'qu6 l   o
-'q0   uÑ q(go.string."func(*uint8, http.ResponseWriter) io.Writer" - l   o(qq    (x- l   o   (q+   u- l   o   (q func(*ui- l   o   (q nt8, htt- l   o   (q p.Respon- l   o$   (q seWriter- l   o,   (q ) io.Wri- l   o4   (q ter     - l   o7   (qu6 l   o
-(q8   uÑ q)go.string."func(io.Writer, ...interface { }) (int, os.Error)" - l   o)qq    )x- l   o   )q1   u- l   o   )q func(io.- l   o   )q Writer, - l   o   )q ...inter- l   o$   )q face { }- l   o,   )q ) (int, - l   o4   )q os.Error- l   o<   )q )       - l   o=   )qu6 l   o
-)q@   uÑ q*go.string."*main.Book" - l   o*qq    *x- l   o   *q
-   u- l   o   *q *main.Bo- l   o   *q ok      - l   o   *qu6 l   o
-*q   uÑ q+go.string."main.Book" - l   o+qq    +x- l   o   +q	   u- l   o   +q main.Boo- l   o   +q k       - l   o   +qu6 l   o
-+q   uÑ q,go.string."Title" - l   o,qq    ,x- l   o   ,q   u- l   o   ,q Title   - l   o   ,qu6 l   o
-,q   uÑ q-go.string."Content" - l   o-qq    -x- l   o   -q   u- l   o   -q Content - l   o   -qu6 l   o
--q   uÑ q.go.string."Book" - l   o.qq    .x- l   o   .q   u- l   o   .q Book    - l   o   .qu6 l   o
-.q   uÑ q/go.string."map[string] main.Book" - l   o/qq    /x- l   o   /q   u- l   o   /q map[stri- l   o   /q ng] main- l   o   /q .Book   - l   o!   /qu6 l   o
-/q(   uÑ q0go.string."func(*uint8, map[string] main.Book, string) main.Book" - l   o0qq    0x- l   o   0q5   u- l   o   0q func(*ui- l   o   0q nt8, map- l   o   0q [string]- l   o$   0q  main.Bo- l   o,   0q ok, stri- l   o4   0q ng) main- l   o<   0q .Book   - l   oA   0qu6 l   o
-0qH   uÑ q1go.string."func() int64" - l   o1qq    1x- l   o   1q   u- l   o   1q func() i- l   o   1q nt64    - l   o   1qu6 l   o
-1q    uÑ qgo.string."func(int64)" - l   oqq    x- l   o   q   u- l   o   q func(int- l   o   q 64)     - l   o   qu6 l   o
-q   uÑ qgo.string."func()" - l   oqq    x- l   o   q   u- l   o   q func()  - l   o   qu6 l   o
-q   uÑ qgo.string."func(*uint8, map[string] main.Book, string, main.Book)" - l   oqq    x- l   o   q6   u- l   o   q func(*ui- l   o   q nt8, map- l   o   q [string]- l   o$   q  main.Bo- l   o,   q ok, stri- l   o4   q ng, main- l   o<   q .Book)  - l   oB   qu6 l   o
-qH   uÑ qgo.string."func(string, func(http.ResponseWriter, *http.Request))" - l   oqq    x- l   o   q6   u- l   o   q func(str- l   o   q ing, fun- l   o   q c(http.R- l   o$   q esponseW- l   o,   q riter, *- l   o4   q http.Req- l   o<   q uest))  - l   oB   qu6 l   o
-qH   uÑ qgo.string."func(string, http.Handler) os.Error" - l   oqq    x- l   o   q#   u- l   o   q func(str- l   o   q ing, htt- l   o   q p.Handle- l   o$   q r) os.Er- l   o,   q ror     - l   o/   qu6 l   o
-q0   uÑ qgo.string."func(*uint8, int64) map[string] main.Book" - l   oqq    x- l   o   q)   u- l   o   q func(*ui- l   o   q nt8, int- l   o   q 64) map[- l   o$   q string] - l   o,   q main.Boo- l   o4   q k       - l   o5   qu6 l   o
-q8   uÑ qgo.string."runtime" - l   oqq    x- l   o   q   u- l   o   q runtime - l   o   qu6 l   o
-q   uÑ qgo.string."bufio" - l   oqq    x- l   o   q   u- l   o   q bufio   - l   o   qu6 l   o
-q   uÑ q	go.string."time" - l   o	qq    	x- l   o   	q   u- l   o   	q time    - l   o   	qu6 l   o
-	q   uÑ q
-go.string."rand" - l   o
-qq    
-x- l   o   
-q   u- l   o   
-q rand    - l   o   
-qu6 l   o
-
-q   uÑ qgo.string."os" - l   oqq    x- l   o   q   u- l   o   q os      - l   o   qu6 l   o
-q   uÑ qgo.string."strconv" - l   oqq    x- l   o   q   u- l   o   q strconv - l   o   qu6 l   o
-q   uÑ qgo.string."strings" - l   oqq    x- l   o   q   u- l   o   q strings - l   o   qu6 l   o
-q   uÑ qgo.string."fmt" - l   oqq    x- l   o   q   u- l   o   q fmt     - l   o   qu6 l   o
-q   uÑ qgo.string."http" - l   oqq    x- l   o   q   u- l   o   q http    - l   o   qu6 l   o
-q   uP      
