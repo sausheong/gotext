@@ -1,12 +1,12 @@
 package main
 
 import (
-	"fmt"
-	"rand"
-	"time"
-	"os"
-	"bufio"
-	"http"
+  "fmt"
+  "rand"
+  "time"
+  "os"
+  "bufio"
+  "http"
   "strings"
   "strconv"
 )
@@ -102,7 +102,7 @@ func main() {
   dictionary = ReadDict("dictionary.txt")
 
   http.HandleFunc("/words/", WordsHandler)
-	http.HandleFunc("/book/", BookHandler)	
-	http.HandleFunc("/", NoHandler)	
-	http.ListenAndServe(":5678", nil)
+  http.HandleFunc("/book/", BookHandler)	
+  http.HandleFunc("/", NoHandler)	
+  http.ListenAndServe(":5678", nil)
 }
